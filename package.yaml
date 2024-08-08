@@ -1,0 +1,60 @@
+name:                deathstacks
+version:             1.0.0.0
+author:              "Simon Schwan"
+maintainer:          "s.schwan@tu-berlin.de"
+copyright:           "2023 TU Berlin - Software and Embedded Systems Engineering (SESE)"
+
+dependencies:
+- base >= 4.7 && < 5
+- split
+- random
+
+ghc-options:
+- -Wall
+- -Wcompat
+- -Widentities
+- -Wincomplete-record-updates
+- -Wmissing-home-modules
+- -Wpartial-fields
+- -Wredundant-constraints
+- -Wno-unused-matches
+- -Wno-missing-export-lists
+- -fno-warn-missing-signatures
+- -fno-warn-name-shadowing
+- -fno-warn-incomplete-patterns
+
+library:
+  source-dirs: src
+
+executables:
+  deathstacks:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - deathstacks
+
+tests:
+  units:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - deathstacks
+    - hspec
+  validate:
+    main:               Spec.hs
+    source-dirs:        validate
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - deathstacks
+    - hspec
